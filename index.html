@@ -5281,23 +5281,30 @@
         setupReveal(document.getElementById('scrollRight'));
 
         /* =============================================================
-           MOBILE: switch between two sides
-           ============================================================= */
+   MOBILE: switch between two sides
+   ============================================================= */
         const mobLeft = document.getElementById('mobLeft');
         const mobRight = document.getElementById('mobRight');
+
         mobLeft.addEventListener('click', () => {
             document.body.setAttribute('data-mobile-side', 'left');
             mobLeft.classList.add('active');
             mobRight.classList.remove('active');
-            document.getElementById('scrollLeft').scrollTo({ top: 0 });
+
+            // FIX: Reset scroll for both the container and the main window
+            document.getElementById('scrollLeft').scrollTop = 0;
+            window.scrollTo(0, 0);
         });
+
         mobRight.addEventListener('click', () => {
             document.body.setAttribute('data-mobile-side', 'right');
             mobRight.classList.add('active');
             mobLeft.classList.remove('active');
-            document.getElementById('scrollRight').scrollTo({ top: 0 });
+
+            // FIX: Reset scroll for both the container and the main window
+            document.getElementById('scrollRight').scrollTop = 0;
+            window.scrollTo(0, 0);
         });
-        document.body.setAttribute('data-mobile-side', 'left');
     </script>
 </body>
 
